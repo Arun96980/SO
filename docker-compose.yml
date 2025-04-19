@@ -1,0 +1,31 @@
+version: '3'
+services:
+  opensearch:
+    image: opensearchproject/opensearch:2.19.0
+    container_name: opensearch
+    environment:
+      - discovery.type=single-node
+      - plugins.security.disabled=false
+      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=Wz$84fNp!vYxQ1t@zE
+    ports:
+      - 9200:9200
+      - 9600:9600
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    volumes:
+      - opensearch-data:/usr/share/opensearch/data
+
+  dashboard:
+    image: opensearchproject/opensearch-dashboards:2.19.0
+    container_name: dashboard
+    ports:
+      - 5601:5601
+    environment:
+      - OPENSEARCH_HOSTS=https://opensearch:9200
+      - OPENSEARCH_USERNAME=admin
+      - OPENSEARCH_PASSWORD=685@#@Als#2ssfssxfs*@
+
+volumes:
+  opensearch-data:

@@ -1,0 +1,65 @@
+<!-- templates/results.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .results-header { margin-bottom: 30px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #007bff; color: white; }
+        .query-summary { background: #f8f9fa; padding: 15px; border-radius: 5px; }
+        .highlight { color: #007bff; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="results-header">
+        <a href="/">← New Search</a>
+        <h1>Search Results</h1>
+        
+        <div class="query-summary">
+            <strong>Query:</strong> <span class="highlight">{{ query }}</span>
+            {% if filters.grade or filters.min_exp %}
+            <div style="margin-top: 10px;">
+                {% if filters.grade %}
+                <div>Grade: <span class="highlight">{{ filters.grade }}</span></div>
+                {% endif %}
+                {% if filters.min_exp %}
+                <div>Experience: 
+                    <span class="highlight">
+                        {{ filters.min_exp }} - {{ filters.max_exp }} months
+                    </span>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if results %}
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Grade</th>
+                <th>Company Exp</th>
+                <th>Total Exp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for candidate in results %}
+            <tr>
+                <td>{{ candidate.associate_name }}</td>
+                <td>{{ candidate.grade }}</td>
+                <td>{{ candidate.exp_in_company_months }} months</td>
+                <td>{{ candidate.total_exp_months }} months</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No results found matching your criteria.</p>
+    {% endif %}
+</body>
+</html>

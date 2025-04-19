@@ -1,0 +1,51 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Candidate Search</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .search-box { text-align: center; margin: 50px 0; }
+        input[type="text"] {
+            padding: 15px;
+            width: 70%;
+            font-size: 16px;
+            border: 2px solid #007bff;
+            border-radius: 25px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 15px 40px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .examples { color: #666; margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <div class="search-box">
+        <h1>Candidate Search</h1>
+        <form action="/search" method="post">
+            <input type="text" 
+                   name="query" 
+                   placeholder="Example: 'Experienced Grade A developers with 3-5 years experience'"
+                   required>
+            <br>
+            <button type="submit">Search</button>
+        </form>
+        
+        <div class="examples">
+            <p>Try these searches:</p>
+            <ul>
+                <li>"Senior Python developers"</li>
+                <li>"Grade B engineers with 2-4 years experience"</li>
+                <li>"Project managers with cloud experience"</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
